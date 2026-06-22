@@ -1,3 +1,5 @@
+# TASK-2: RAM DESIGN
+
 # Abstract
 
 Random Access Memory (RAM) is an essential component of digital systems used for temporary data storage and retrieval. It allows data to be read from and written to specific memory locations, enabling efficient communication between the processor and memory. This project focuses on the design and implementation of a simple synchronous RAM module using Verilog/VHDL. The RAM supports both read and write operations, which are controlled by clock and control signals. A testbench is developed to verify the functionality of the RAM through simulation. The simulation results demonstrate that the RAM correctly stores and retrieves data based on the given inputs and control signals. This project provides a practical understanding of memory design, hardware description languages, and digital system implementation.
@@ -70,3 +72,71 @@ The future scope of RAM lies in the development of faster, larger, and more ener
 # Conclusion
 
 The Random Access Memory (RAM) module was successfully designed and implemented using Verilog/VHDL. The RAM performed both read and write operations correctly, as verified through simulation. The project helped in understanding the basic concepts of memory design, data storage, and retrieval in digital systems. The simulation results confirmed that the RAM operates accurately according to the given inputs and control signals. Overall, this project provided practical knowledge of hardware description languages and digital system design, forming a strong foundation for advanced memory and computer architecture studies.
+
+# Program
+
+module RAM (
+    input clk,
+    input we,
+    input [3:0] addr,
+    input [7:0] data_in,
+    output reg [7:0] data_out
+);
+
+reg [7:0] memory [15:0];
+
+always @(posedge clk)
+begin
+    if (we)
+        memory[addr] <= data_in;   // Write Operation
+    else
+        data_out <= memory[addr];  // Read Operation
+end
+
+endmodule
+
+  # Testbench
+  
+module RAM_tb;
+
+reg clk;
+reg we;
+reg [3:0] addr;
+reg [7:0] data_in;
+wire [7:0] data_out;
+
+RAM uut (
+    .clk(clk),
+    .we(we),
+    .addr(addr),
+    .data_in(data_in),
+    .data_out(data_out)
+);
+
+always #5 clk = ~clk;
+
+initial
+begin
+    clk = 0;
+
+    // Write data
+    we = 1;
+    addr = 4'b0001;
+    data_in = 8'b10101010;
+    #10;
+
+    // Read data
+    we = 0;
+    addr = 4'b0001;
+    #10;
+
+    $finish;
+end
+
+initial
+begin
+    $monitor("Time=%0t we=%b addr=%b data_in=%b data_out=%b",
+             $time, we, addr, data_in, data_out);
+end
+
+endmodule
