@@ -1,3 +1,9 @@
 # Abstract
 
 Random Access Memory (RAM) is an essential component of digital systems used for temporary data storage and retrieval. It allows data to be read from and written to specific memory locations, enabling efficient communication between the processor and memory. This project focuses on the design and implementation of a simple synchronous RAM module using Verilog/VHDL. The RAM supports both read and write operations, which are controlled by clock and control signals. A testbench is developed to verify the functionality of the RAM through simulation. The simulation results demonstrate that the RAM correctly stores and retrieves data based on the given inputs and control signals. This project provides a practical understanding of memory design, hardware description languages, and digital system implementation.
+
+# Introduction
+
+Random Access Memory (RAM) is an important memory component used in digital systems and computers for storing data temporarily. It allows data to be read from and written to any memory location quickly and efficiently. RAM plays a vital role in providing fast access to data required by the processor during program execution. Unlike permanent storage devices, RAM stores data only while the system is powered on.This project focuses on the design and implementation of a simple synchronous RAM module using Verilog/VHDL. The RAM supports both read and write operations, which are controlled by clock and control signals. The functionality of the RAM is verified through simulation using a testbench. This project helps in understanding memory architecture, digital circuit design, and hardware description languages, providing a strong foundation for advanced digital system development.
+
+
